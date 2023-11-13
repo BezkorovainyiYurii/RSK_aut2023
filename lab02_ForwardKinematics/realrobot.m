@@ -11,6 +11,7 @@ function [x,y]=realrobot(x0,y0,t1,t2,l1,l2)
   % тригонометричними фукнціями у градусах!
   % cosd(), sind();
     R1 = [cosd(t1) -sind(t1);sind(t1) cosd(t1)];
+    %R1 = eye(2);
     R1T = R1; % кінцева матриця
   % Положення - потрібно скласти
     d1 = [x0;y0];
@@ -24,6 +25,7 @@ function [x,y]=realrobot(x0,y0,t1,t2,l1,l2)
   % Сегмент 1:
   % Матриця повороту - потрібно скласти
     R2 = [cosd(t2) -sind(t2);sind(t2) cosd(t2)];
+    %R2 = eye(2);
     R2T = R2*R1;
   % Положення - потрібно скласти
     d2 = [s1_x;s1_y];
@@ -36,4 +38,4 @@ function [x,y]=realrobot(x0,y0,t1,t2,l1,l2)
 
   x = [x0, s1_x, s2_x];
   y = [y0, s1_y, s2_y];
-endfunction
+end

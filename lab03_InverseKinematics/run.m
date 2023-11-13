@@ -42,7 +42,7 @@ program_position = [8,4;6,4;8,6;6,6;8,4;8,6;7,7;6,6;6,4];
 program_angles =zeros(size(program_position));
 for i = 1:size(program_position,1),
   [program_angles(i,1),program_angles(i,2)] = inverse(program_position(i,1), program_position(i,2),x0,y0,l1,l2);
-endfor
+end
 
 
 % Запис траекторії руху для аналізу
@@ -61,7 +61,7 @@ axis([-1,11,-1,11]);
 grid on;
 
 % Зображення робота
-h_robot=line(ax,
+h_robot=line(ax,...
             "xdata",pos_x,...
             "ydata",pos_y,...
             "LineWidth",2,...
@@ -89,8 +89,8 @@ h_program = line(ax,...
             "Color",[0,1.0,0]);
 
 % Відпрацювання програми руху
-printf("Start simulation\n");
-printf("Press ENTER...\n");
+fprintf("Start simulation\n");
+fprintf("Press ENTER...\n");
 pause;
 % Кількість проміжних точок програми, для згладжування
 Npoint = 10;
@@ -112,7 +112,7 @@ for np=1:(size(program_angles,1)-1)*Npoint,
       "xdata",track_x(:,end),...
       "ydata",track_y(:,end));
 
-endfor
+end
 
 figure(2)
 clf();
@@ -120,12 +120,14 @@ subplot(2,2,1)
 plot( track_x(:,end),...
       track_y(:,end),...
       "LineWidth",2,...
-      "Color",[1.0,0,0],...
-       program_position(:,1),...
-       program_position(:,2),...
-       "LineWidth",2,...
-       "LineStyle",":",...
-       "Color",[0,1.0,0]);
+      "Color",[1.0,0,0]);
+hold on;
+plot( program_position(:,1),...
+      program_position(:,2),...
+      "LineWidth",2,...
+      "LineStyle",":",...
+      "Color",[0,1.0,0]);
+hold off;
 xlabel("x")
 ylabel("y");
 axis equal
@@ -147,5 +149,5 @@ plot(program_angles(:,1),program_angles(:,2));
 grid on;
 xlabel("Координата t1");
 ylabel("Координата t2");
-printf("Done\n");
+fprintf("Done\n");
 

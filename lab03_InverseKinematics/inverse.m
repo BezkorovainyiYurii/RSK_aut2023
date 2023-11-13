@@ -14,12 +14,12 @@ function [t1,t2]=inverse(x,y,x0,y0,l1,l2)
   t1 = atan2d(y-y0,x-x0)-acosd( (l2^2-l1^2-(x-x0)^2-(y-y0)^2)/(-2*l2*sqrt((x-x0)^2+(y-y0)^2)));
 
   % Перевірка на допустимість результату
-  if iscomplex(t2)
+  if ~isreal(t2)
     error(["Bad value t2 :",num2str(t2)]);
-  endif
+  end
 
-  if iscomplex(t1)
+  if ~isreal(t1)
     error(["Bad value t1 :",num2str(t1)]);
-  endif
+  end
 
-endfunction
+end
